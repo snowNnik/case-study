@@ -45,7 +45,7 @@
 .user-message {
   align-self: flex-end;
   font-size: 13px;
-  background-color: #1b3875;
+  background-color: #337778;
   color: #ffffff;
   border-top-right-radius: 0;
   text-align: left;
@@ -53,9 +53,9 @@
 
 .assistant-message {
   align-self: flex-start;
-  background-color: #f6f6f6;
+  background-color: #EE9721;
   border-top-left-radius: 0;
-  color: #000000;
+  color: #222222;
   padding: 14px;
   font-size: 13px;
   width: 100%;
@@ -108,4 +108,21 @@
   color: white;
   cursor: pointer;
   font-size: 13px;
+  margin-left: 10px; 
+}
+
+.input-area .send-button {
+  background-color: #337778;
+}
+
+.input-area .send-button:hover {
+  background-color: #4bc0c2;
+}
+
+.input-area .reset-button {
+  background-color: rgb(170, 0, 0);
+}
+
+.input-area .reset-button:hover {
+  background-color: rgb(249, 0, 0);
 }

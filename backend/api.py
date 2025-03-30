@@ -9,7 +9,7 @@ CORS(app, origins="http://localhost:3000")
 
 CONVERSATION_HISTORY_FILE = './conversationHistory.json'
 PROMPT_FILE = './prompt.json'
-API_KEY = 'sk-acca7a6d83c74881bad6d855017e8a52'
+API_KEY = 'your-key-here'
 
 def load_json(file_path):
     """Helper function to load a JSON file."""

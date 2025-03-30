@@ -1,7 +1,8 @@
 import React, { useState, useEffect, useRef } from "react";
 import "./ChatWindow.css";
-import { getAIMessage } from "../api/api";
+import { getAIMessage, resetHistory } from "../api/api";
 import { marked } from "marked";
+import loadingGif from "../assets/loading.gif"
 
 function ChatWindow() {
 
@@ -12,6 +13,7 @@ function ChatWindow() {
 
   const [messages,setMessages] = useState(defaultMessage)
   const [input, setInput] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const messagesEndRef = useRef(null);
 
@@ -24,16 +26,23 @@ function ChatWindow() {
   }, [messages]);
 
   const handleSend = async (input) => {
-    if (input.trim() !== "") {
+    if (typeof input === "string" && input.trim() !== "") {
       // Set user message
       setMessages(prevMessages => [...prevMessages, { role: "user", content: input }]);
       setInput("");
+      setLoading(true);
 
       // Call API & set assistant message
       const newMessage = await getAIMessage(input);
       setMessages(prevMessages => [...prevMessages, newMessage]);
+      setLoading(false);
     }
   };
+
+  const handleReset = () => {
+    resetHistory();
+    setMessages(defaultMessage);
+  }
 
   return (
       <div className="messages-container">
@@ -46,12 +55,19 @@ function ChatWindow() {
                   )}
               </div>
           ))}
+
+          {loading && (
+            <div className="loading-message">
+              <img src={loadingGif} alt="Loading..." className="loading-gif" style={{ width: "40px", height: "40px" }} />
+            </div>
+          )}
+
           <div ref={messagesEndRef} />
           <div className="input-area">
             <input
               value={input}
               onChange={(e) => setInput(e.target.value)}
-              placeholder="Type a message..."
+              placeholder="Ask about PartSelect..."
               onKeyPress={(e) => {
                 if (e.key === "Enter" && !e.shiftKey) {
                   handleSend(input);
@@ -63,6 +79,7 @@ function ChatWindow() {
             <button className="send-button" onClick={handleSend}>
               Send
             </button>
+            <button className="reset-button" onClick={handleReset}> Clear </button>
           </div>
       </div>
 );
