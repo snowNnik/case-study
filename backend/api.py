@@ -73,7 +73,7 @@ def handle_query():
             if objects > 1:
                 system_message = {
                     "role": "system",
-                    "content": "Please do not include two JSON objects in a single response. Reformat your previous response."
+                    "content": "Please do not include two JSON objects in a single response. Please return only the answer from your previous response."
                 }
                 conversationHistory.append(system_message)
             else:
@@ -96,7 +96,7 @@ def handle_query():
                 if objects > 1:
                     system_message = {
                         "role": "system",
-                        "content": "Please do not include two JSON objects in a single response. Reformat your previous response."
+                        "content": "Please do not include two JSON objects in a single response. Please return only the answer from your previous response."
                     }
                     conversationHistory.append(system_message)
                 else:
