@@ -4,6 +4,16 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## Available Scripts
 
+To start the backend, cd into backend from the project directory: 
+
+### `cd backend`
+
+Then run
+
+### `python api.py`
+
+Make sure to add your deepseek api key.
+
 In the project directory, you can run:
 
 ### `npm start`
